@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/FacialRecognitionApp/backend_app#readme",
   "dependencies": {
+    "await-stream-ready": "^1.0.1",
+    "busboy": "^0.3.1",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "pg": "^8.5.1",
+    "stream-wormhole": "^1.1.0"
   }
 }
