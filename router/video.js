@@ -13,16 +13,17 @@ router.get('/', (req, res) => {
 router.post('/upload_file', async (req, res) => {
     const busboy = new Busboy({ headers: req.headers });
     busboy.on('file', async (fieldname, file, filename, encoding, mimetype) => {
-        //console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
-        // 获取文件流
-        const stream = file;
-        // 定义文件名
-        const upload_name = Date.now() + path.extname(filename).toLocaleLowerCase()
-        // 目标文件
-        const target = path.join('public', upload_name);
-        //
-        const writeStream = fs.createWriteStream(target);
         try {
+            //console.log('File [' + fieldname + ']: filename: ' + filename + ', encoding: ' + encoding + ', mimetype: ' + mimetype);
+            // 获取文件流
+            const stream = file;
+            // 定义文件名
+            const upload_name = Date.now() + path.extname(filename).toLocaleLowerCase()
+            // 目标文件
+            const target = path.join('public', upload_name);
+            //
+            const writeStream = fs.createWriteStream(target);
+
             console.log('Start upload');
             //异步把文件流 写入
             await awaitWriteStream(stream.pipe(writeStream));
