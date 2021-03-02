@@ -18,6 +18,7 @@
   "homepage": "https://github.com/FacialRecognitionApp/backend_app#readme",
   "dependencies": {
     "await-stream-ready": "^1.0.1",
+    "aws-sdk": "^2.854.0",
     "busboy": "^0.3.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
