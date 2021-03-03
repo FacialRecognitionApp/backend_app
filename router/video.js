@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 // const fs = require("fs");
 // const awaitWriteStream = require("await-stream-ready").write;
-const sendToWormhole = require("stream-wormhole");
 const Busboy = require("busboy");
 const uploadFile = require("../utils/upload_s3");
 
