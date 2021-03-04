@@ -6,6 +6,7 @@ const PORT = config.DEFAULT_PORT;
 
 // Load all the router
 const video = require('./router/video');
+const survey = require('./router/survey');
 
 // Load all the middleware
 app.use(express.json());
@@ -21,5 +22,6 @@ app.use((req, res, next) => {
 
 // Set all router to app
 app.use('/video', video);
+app.use('/survey', survey);
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
