@@ -14,9 +14,9 @@ router.get('/survey_questions', async (req, res) => {
     try {
         let sql = `SELECT * FROM survey_question`;
         let result = (await client.query(sql)).rows;
-        res.json({ success: true, data: result });
+        res.json({ success: true, message: 'Get question list successful', data: result });
     } catch (e) {
-        res.json({ success: false, message: 'Can not find questions' })
+        res.json({ success: false, message: 'Can not find questions' });
     }
 });
 

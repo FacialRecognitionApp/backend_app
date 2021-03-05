@@ -1,3 +1,4 @@
+// Load all packages
 const express = require('express');
 const app = express();
 const config = require('./config');
@@ -7,6 +8,7 @@ const PORT = config.DEFAULT_PORT;
 // Load all the router
 const video = require('./router/video');
 const survey = require('./router/survey');
+const user = require('./router/user');
 
 // Load all the middleware
 app.use(express.json());
@@ -23,5 +25,7 @@ app.use((req, res, next) => {
 // Set all router to app
 app.use('/video', video);
 app.use('/survey', survey);
+app.use('/user', user);
 
+// Start Server
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
