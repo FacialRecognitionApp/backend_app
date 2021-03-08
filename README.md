@@ -55,7 +55,7 @@ Sample axios
 axios({
 	method: 'post',
 	url: 'http://localhost:7000/video/upload_file',
-	data: UploadFile,
+	data: formData,
 	params: {
 		user_id: 10
 	},
@@ -70,11 +70,142 @@ Sample res data output
 { success: false, message: 'Please give your correct user id' }
 { success: false, message: 'Sorry, user is not existed' }
 { success: false, message: 'Sorry, video can not be upload' }
-{ success: true, message: 'Video upload successful' }
+{ success: true, message: 'Video upload successful', url: "https://survey-videos-mohawk-dev.s3.amazonaws.com/														1615226000334.jpg" }
 
 ```
 
 ## Survey
+
+### Test the backend api is working
+``` bash
+GET http://localhost:7000/survey/
+
+res output
+"Hi api!"
+```
+
+### Get all survey questions
+``` bash
+GET http://localhost:7000/survey/survey_questions
+
+Sample res data output
+{ success: false, message: 'Can not find questions' }
+{
+    "success": true,
+    "message": "Get question list successful",
+    "data": [
+        {
+            "survey_question_id": 1,
+            "question_content": "Out of the following, which facial gestures were the most difficult to produce. Please rate them with 6 being the hardest, 1 being the easiest to produce.",
+            "question_type_id": 1,
+            "type_name": "Rating",
+            "rating_questions": [
+                {
+                    "rating_question_id": 1,
+                    "rating_question_content": "Closed-mouth smile"
+                },
+                {
+                    "rating_question_id": 2,
+                    "rating_question_content": "Open-mouth smile"
+                },
+                {
+                    "rating_question_id": 3,
+                    "rating_question_content": "Frown"
+                },
+                {
+                    "rating_question_id": 4,
+                    "rating_question_content": "Brow furrow"
+                },
+                {
+                    "rating_question_id": 5,
+                    "rating_question_content": "Wink with left eye"
+                },
+                {
+                    "rating_question_id": 6,
+                    "rating_question_content": "Wink with right eye"
+                }
+            ]
+        },
+        {
+            "survey_question_id": 2,
+            "question_content": "What facial gesture would you want to use to activate your turn signals?",
+            "question_type_id": 2,
+            "type_name": "Short Answer"
+        },
+        {
+            "survey_question_id": 3,
+            "question_content": "What facial gesture would you want to use to activate your windshield wipers?",
+            "question_type_id": 2,
+            "type_name": "Short Answer"
+        },
+        {
+            "survey_question_id": 4,
+            "question_content": "What facial gesture would you want to use to activate your horn?",
+            "question_type_id": 2,
+            "type_name": "Short Answer"
+        },
+        {
+            "survey_question_id": 5,
+            "question_content": "What do you think about facial gesture recognition technology being used in vehicles?",
+            "question_type_id": 3,
+            "type_name": "Long answer"
+        }
+    ]
+}
+
+```
+
+### Send all survey question answers
+``` bash
+POST http://localhost:7000/survey/survey_answer
+
+Sample axios
+axios({
+	method: 'POST',
+	url: 'http://localhost:7000/survey/survey_answer',
+	data: {
+		user_id: 6,
+		survey_answer: [
+			{
+				survey_question_id: 1,
+				question_type_id: 2,
+				answer_content: 'sd'
+			},
+			{
+				survey_question_id: 2,
+				question_type_id: 2,
+				answer_content: 'sddfgfg'
+			},
+			{
+				survey_question_id: 3,
+				question_type_id: 3,
+				answer_content: 'sdfdgfdg'
+			},
+			{
+				survey_question_id: 2,
+				question_type_id: 1,
+				answer_content: [
+					{
+						rating_question_id: 1,
+						rating: 3.2
+					},
+					{
+						rating_question_id: 2,
+						rating: 3.4
+					},
+				]
+			}
+		]
+	},
+}).then(res => {
+	console.log(res.data);
+});
+
+Sample res data output
+{ success: false, message: 'Sorry, can not update your answers' }
+{ success: true, message: 'Update answer successful' }
+
+```
 
 
 

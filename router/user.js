@@ -44,10 +44,10 @@ router.post('/create_new_user', async (req, res) => {
                 let search_result = await client.query(search_sql);
 
                 if (search_result.rowCount > 0) {
-                    return res.json({ success: false, message: 'Sorry, this email address is already taken' });
+                    return res.status(400).json({ success: false, message: 'Sorry, this email address is already taken' });
                 }
             } else {
-                return res.json({ success: false, message: 'Please provide valid email address' });
+                return res.status(400).json({ success: false, message: 'Please provide valid email address' });
             }
         }
 
@@ -59,13 +59,13 @@ router.post('/create_new_user', async (req, res) => {
 
         // Return json respond based on the insert result
         if (result.rowCount === 1) {
-            res.json({ success: true, message: 'Create user successful', user_id: result.rows[0].user_id });
+            res.status(201).json({ success: true, message: 'Create user successful', user_id: result.rows[0].user_id });
         } else {
             throw 'fail';
         }
 
     } catch (e) {
-        res.json({ success: false, message: 'Can not create new user' });
+        res.status(500).json({ success: false, message: 'Can not create new user' });
     }
 });
 
