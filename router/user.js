@@ -44,10 +44,10 @@ router.post('/create_new_user', async (req, res) => {
                 let search_result = await client.query(search_sql);
 
                 if (search_result.rowCount > 0) {
-                    return res.status(400).json({ success: false, message: 'Sorry, this email address is already taken' });
+                    return res.json({ success: false, message: 'Sorry, this email address is already taken' });
                 }
             } else {
-                return res.status(400).json({ success: false, message: 'Please provide valid email address' });
+                return res.json({ success: false, message: 'Please provide valid email address' });
             }
         }
 

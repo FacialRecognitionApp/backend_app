@@ -47,6 +47,44 @@ res output
 "Hi api!"
 ```
 
+### Get all the video type questions
+``` bash
+GET http://localhost:7000/video/get_video_question_type
+
+Sample res data output
+{ success: false, message: 'Can not find video question types' }
+{
+    "success": true,
+    "message": "Get video question type successful",
+    "data": [
+        {
+            "video_type_id": 1,
+            "video_type_content": "Closed-mouth smile"
+        },
+        {
+            "video_type_id": 2,
+            "video_type_content": "Open-mouth smile"
+        },
+        {
+            "video_type_id": 3,
+            "video_type_content": "Frown"
+        },
+        {
+            "video_type_id": 4,
+            "video_type_content": "Brow furrow"
+        },
+        {
+            "video_type_id": 5,
+            "video_type_content": "Wink with left eye"
+        },
+        {
+            "video_type_id": 6,
+            "video_type_content": "Wink with right eye"
+        }
+    ]
+}
+```
+
 ### API to upload video file
 ``` bash
 POST http://localhost:7000/video/upload_file
@@ -57,7 +95,8 @@ axios({
 	url: 'http://localhost:7000/video/upload_file',
 	data: formData,
 	params: {
-		user_id: 10
+		user_id: 10,
+        video_type_id: 2
 	},
 	headers: {
 		'Content-Type': 'multipart/form-data;charset=UTF-8'
