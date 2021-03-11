@@ -52,7 +52,7 @@ router.post('/create_new_user', async (req, res) => {
         }
 
         // Insert a new record to database
-        let sql = `INSERT INTO ${USER.table_name} (${USER.email}, ${USER.submit_date})
+        let sql = `INSERT INTO ${USER.table_name} (${USER.email}, ${USER.submit_datetime})
                     VALUES ('${email}', '${submit_date}')
                     RETURNING *`;
         let result = await client.query(sql);
