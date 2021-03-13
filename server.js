@@ -13,12 +13,7 @@ const PORT = config.DEFAULT_PORT;
 const app = express();
 
 // Load all the middleware
-app.use(
-  cors({
-    origin: "*",
-    optionsSuccessStatus: 200, // For legacy browser support
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/public", express.static(path.join(__dirname, "public")));
