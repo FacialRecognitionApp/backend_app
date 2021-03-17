@@ -8,6 +8,7 @@ const path = require("path");
 const video = require("./router/video");
 const survey = require("./router/survey");
 const user = require("./router/user");
+
 const PORT = config.DEFAULT_PORT;
 
 const app = express();
@@ -35,6 +36,9 @@ app.use((req, res, next) => {
 app.use("/video", video);
 app.use("/survey", survey);
 app.use("/user", user);
-
+app.use(
+  "/.well-known/pki-validation",
+  express.static(path.join(__dirname, "public"))
+);
 // Start Server
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
