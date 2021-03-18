@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use("/api/public", express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
@@ -33,12 +33,9 @@ app.use((req, res, next) => {
 });
 
 // Set all router to app
-app.use("/video", video);
-app.use("/survey", survey);
-app.use("/user", user);
-app.use(
-  "/.well-known/pki-validation",
-  express.static(path.join(__dirname, "public"))
-);
+app.use("/api/video", video);
+app.use("/api/survey", survey);
+app.use("/api/user", user);
+
 // Start Server
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
