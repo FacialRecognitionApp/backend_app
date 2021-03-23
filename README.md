@@ -10,7 +10,7 @@ npm start
 
 ### Test the backend api is working
 ``` bash
-GET http://localhost:7000/user/
+GET http://localhost:7000/api/user/
 
 res output
 "Hi api!"
@@ -18,12 +18,12 @@ res output
 
 ### Add new user record
 ``` bash
-POST http://localhost:7000/user/create_new_user
+POST http://localhost:7000/api/user/create_new_user
 
 Sample axios
 axios({
 	method: 'POST',
-	url: 'http://localhost:7000/user/create_new_user',
+	url: 'http://localhost:7000/api/user/create_new_user',
 	data: { email: 'dfew@dsf.com' },
 }).then(res => {
 	console.log(res.data);
@@ -41,7 +41,7 @@ Sample res data output
 
 ### Test the backend api is working
 ``` bash
-GET http://localhost:7000/video/
+GET http://localhost:7000/api/video/
 
 res output
 "Hi api!"
@@ -49,7 +49,7 @@ res output
 
 ### Get all the video type questions
 ``` bash
-GET http://localhost:7000/video/get_video_question_type
+GET http://localhost:7000/api/video/get_video_question_type
 
 Sample res data output
 { success: false, message: 'Can not find video question types' }
@@ -58,28 +58,40 @@ Sample res data output
     "message": "Get video question type successful",
     "data": [
         {
-            "video_type_id": 1,
-            "video_type_content": "Closed-mouth smile"
+            "video_type_id": 4,
+            "video_type_content": "Brow furrow",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/BrowFurrow.png"
         },
         {
-            "video_type_id": 2,
-            "video_type_content": "Open-mouth smile"
+            "video_type_id": 1,
+            "video_type_content": "Closed-mouth smile",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/CloseMouthedSmile.png"
         },
         {
             "video_type_id": 3,
-            "video_type_content": "Frown"
-        },
-        {
-            "video_type_id": 4,
-            "video_type_content": "Brow furrow"
+            "video_type_content": "Frown",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/Frown.png"
         },
         {
             "video_type_id": 5,
-            "video_type_content": "Wink with left eye"
+            "video_type_content": "Wink with left eye",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/LeftEyeWink.png"
+        },
+        {
+            "video_type_id": 2,
+            "video_type_content": "Open-mouth smile",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/OpenMouthedSmile.png"
         },
         {
             "video_type_id": 6,
-            "video_type_content": "Wink with right eye"
+            "video_type_content": "Wink with right eye",
+            "video_duration": 10,
+            "image_url": "https://survey-assets-mohawk-dev.s3.ca-central-1.amazonaws.com/emotions/RightEyeWink.png"
         }
     ]
 }
@@ -87,12 +99,12 @@ Sample res data output
 
 ### API to upload video file
 ``` bash
-POST http://localhost:7000/video/upload_file
+POST http://localhost:7000/api/video/upload_file
 
 Sample axios
 axios({
 	method: 'post',
-	url: 'http://localhost:7000/video/upload_file',
+	url: 'http://localhost:7000/api/video/upload_file',
 	data: formData,
 	params: {
 		user_id: 10,
@@ -117,7 +129,7 @@ Sample res data output
 
 ### Test the backend api is working
 ``` bash
-GET http://localhost:7000/survey/
+GET http://localhost:7000/api/survey/
 
 res output
 "Hi api!"
@@ -125,7 +137,7 @@ res output
 
 ### Get all survey questions
 ``` bash
-GET http://localhost:7000/survey/survey_questions
+GET http://localhost:7000/api/survey/survey_questions
 
 Sample res data output
 { success: false, message: 'Can not find questions' }
@@ -196,12 +208,12 @@ Sample res data output
 
 ### Send all survey question answers
 ``` bash
-POST http://localhost:7000/survey/survey_answer
+POST http://localhost:7000/api/survey/survey_answer
 
 Sample axios
 axios({
 	method: 'POST',
-	url: 'http://localhost:7000/survey/survey_answer',
+	url: 'http://localhost:7000/api/survey/survey_answer',
 	data: {
 		user_id: 6,
 		survey_answer: [
